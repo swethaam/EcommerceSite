@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="{{request.locale_name}}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="pyramid web application">
+    <meta name="author" content="Pylons Project">
+    <link href="{{request.static_url('ecommercesite:static/home.css')}}"  rel="stylesheet">
+
+<head>
+  <title>The Ethnics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <body id="homePage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="home">The Ethnics</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+  <ul class="nav navbar-nav navbar-right">
+      <li><a href="cart"><span class="glyphicon glyphicon-shopping-cart"></span><span id="cartval">{{cartcnt}}</span> My Cart</a></li>
+    </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="home">HOME</a></li>
+        <li><a href="shop">SHOP</a></li>
+        <li><a href="faq">FAQ</a></li>
+        <li><a href="contact">CONTACT US</a></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+      <div class="one active" >     
+<h1 class="text-center title">JEWELS AS PURE AS YOU! </h1>
+	</div>
+<h2 class="text-center subtitle"> New Arrivals</h2>
+<table id="table">
+<tr>
+<td>
+<img src="../static/jewel1.jpg" class="showcase img-circle ">
+</td>
+<td>
+<img src="../static/jewel2.jpg" class="showcase1 img-circle">
+</td>
+<td>
+<img src="../static/jewel3.jpg" class="showcase2 img-circle">
+</td>
+</tr>
+</table>
+<button class="collections text-center">View Collections</button>
+<div class="about">
+<div class="col-lg-7 labout">
+<img src="../static/jewel4.jpg">
+</div>
+<div class="col-lg-5 rabout">
+<h1 class="text-center">About Us</h1>
+<p class="text-center">orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+</div>
+</div>
+<!-- Container (Contact Section) -->
+<div id="contact" class="container contact">
+  <h3 class="text-center">FEEDBACK</h3>
+  <p class="text-center"><em>We love our fans!</em></p>
+<form class="text-center">
+          <input style="margin-left:20px;margin-bottom:20px;padding-left:80px;padding-right:80px" id="name" name="name" placeholder="Name" type="text" required>
+<br>
+          <input style="margin-left:20px;margin-bottom:20px;padding-left:80px;padding-right:80px" id="email" name="email" placeholder="Email" type="email" required>
+<br>
+      <textarea style="margin-left:20px;margin-bottom:20px;padding-left:80px;padding-right:80px"  id="comments" name="comments" placeholder="Feedback" rows="5"></textarea>
+<br>
+          <button class="collections" type="submit" style="margin:20px">Send</button>
+</form>
+</div>
+
+<!-- Image of location/map -->
+<img src="../static/map.jpg" class="img-responsive map" style="width:100%;margin:20px">
+</body>

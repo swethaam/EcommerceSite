@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="{{request.locale_name}}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="pyramid web application">
+    <meta name="author" content="Pylons Project">
+    <link href="{{request.static_url('ecommercesite:static/shop.css')}}"  rel="stylesheet">
+
+<head>
+  <title>The Ethnics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body onload="load()">
+  <body id="shopPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="home">The Ethnics</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+  <ul class="nav navbar-nav navbar-right">
+      <li><a href="cart"><span class="glyphicon glyphicon-shopping-cart"></span><span id="cartval">{{cartcnt}}</span> My Cart</a></li>
+ <li><a data-toggle="modal" id="lstatus" onclick="openn(this)"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+    </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="home">HOME</a></li>
+        <li><a href="shop">SHOP</a></li>
+        <li><a href="faq">FAQ</a></li>
+        <li><a href="contact">CONTACT US</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<h1 class="text-center heading">OUR COLLECTION</h1>
+<p id="status" style="visibility:hidden">{{stat}}</p>
+<p class="text-right" id="loginstat" style="margin-left:20dp">{{result}}</p>
+<div class="filters ">
+<div class="dropdown sort">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort BY
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Price H to L</a></li>
+    <li><a href="#">Price L to H</a></li>
+    <li><a href="#">Latest</a></li>
+    <li><a href="#">Relevant</a></li>
+  </ul>
+</div>
+<div class="dropdown slide">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filter By
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Color</a></li>
+    <li><a href="#">Brand</a></li>
+    <li><a href="#">Price</a></li>
+  </ul>
+</div>
+
+</div>
+<div class="subody">
+    <div class="row text-center">
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="../static/jewel1.jpg" alt="Paris" width="400" height="300">
+          <p>Diamond Sandals</p>
+	 <p>A platinum ring</p>
+          <p>$45,000</p>
+          <button class="btn"   onclick="viewimg(this)">View Product</button>
+    <button class="btn" data-toggle="modal" onclick="updcart(this)" data-target="#cart">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="../static/jewel2.jpg" alt="New York" width="400" height="300">
+          <p>Gold Ring</p>
+	 <p>A platinum ring</p>
+          <p>$4000</p>
+          <button class="btn" data-toggle="modal" data-target="#view" onclick="viewimg(this)">View Product</button>
+   <button class="btn" data-toggle="modal" data-target="#cart" onclick="updcart(this)">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="../static/jewel3.jpg" alt="San Francisco" width="400" height="300">
+          <p>Platinum Ring</p>
+	 <p>A platinum ring</p>
+          <p>$50,000</p>
+          <button class="btn" data-toggle="modal" data-target="#view" onclick="viewimg(this)">View Product</button>
+    <button class="btn" data-toggle="modal" data-target="#cart" onclick="updcart(this)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="row text-center">
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="../static/jewel4.jpg" alt="San Francisco" width="400" height="300">
+          <p>Platinum Ring</p>
+	 <p>A platinum ring</p>
+          <p>$50,000</p>
+          <button onclick="viewimg(this)" class="btn" data-toggle="modal" data-target="#view">View Product</button>
+    <button class="btn" data-toggle="modal" data-target="#cart" onclick="updcart(this)">Add to Cart</button>
+        </div>
+      </div>
+        <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="../static/jewel5.jpg" alt="San Francisco" width="400" height="300">
+          <p>Platinum Ring</p>
+	 <p>A platinum ring</p>
+          <p>$50,000</p>
+          <button class="btn" data-toggle="modal" data-target="#view" onclick="viewimg(this)">View Product</button>
+    <button class="btn" data-toggle="modal" data-target="#cart" onclick="updcart(this)">Add to Cart</button>
+        </div>
+</div>
+         <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="../static/jewel12.jpg" alt="San Francisco" width="400" height="300">
+          <p>Platinum Ring</p>
+	 <p>A platinum ring</p>
+          <p>$50,000</p>
+          <button class="btn" data-toggle="modal" data-target="#view" onclick="viewimg(this)">View Product</button>
+    <button class="btn" data-toggle="modal" data-target="#cart" onclick="updcart(this)">Add to Cart</button>
+        </div>
+    </div>
+  </div>
+</div>
+    <div class="row text-center">
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="../static/jewel11.jpg" alt="San Francisco" width="400" height="300">
+          <p>Platinum Ring</p>
+	 <p>A platinum ring</p>
+          <p>$50,000</p>
+          <button class="btn" data-toggle="modal" data-target="#view" onclick="viewimg(this)">View Product</button>
+    <button class="btn" data-toggle="modal" data-target="#cart" onclick="updcart(this)">Add to Cart</button>
+        </div>
+      </div>
+        <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="../static/jewel8.jpg" alt="San Francisco" width="400" height="300">
+          <p>Platinum Ring</p>
+	 <p>A platinum ring</p>
+          <p>$50,000</p>
+          <button class="btn" data-toggle="modal" data-target="#view" onclick="viewimg(this)" >View Product</button>
+    <button class="btn" data-toggle="modal" data-target="#cart" onclick="updcart(this)">Add to Cart</button>
+        </div>
+</div>
+         <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="../static/jewel9.jpg" alt="San Francisco" width="400" height="300">
+          <p>Platinum Ring</p>
+	 <p>A platinum ring</p>
+          <p>$50,000</p>
+          <button class="btn" data-toggle="modal" data-target="#view" onclick="viewimg(this)">View Product</button>
+    <button class="btn" data-toggle="modal" data-target="#cart" onclick="updcart(this)">Add to Cart</button>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+<form id="outform" style="visibility:hidden" method="post" action="/shop">
+<input type="submit" name="outsub" id="outsub" >
+</form>
+
+<form action="/shop" method="post" style="visibility:hidden" id="addtocart">
+<input type="text" id="pname" name="pname">
+<input type="text" id="pdesc" name="pdesc">
+<input type="text" id="pprice" name="pprice">
+<input type="text" id="pimg" name="pimg">
+<input type="text" id="cartcnt" name="cartcnt">
+<input type="submit" style="visibility:hidden" id="sub" name="sub">  
+</form>
+
+  <!-- Modal -->
+  <div class="modal fade" id="view" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        <div class="modal-body">
+          <img id="img">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--login modal-->
+  <div class="modal fade" id="log" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4><span></span>Log In</h4>
+        </div>
+        <div class="modal-body">
+      <form role="form" action="/shop" method="post">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span>Username/Email</label>
+              <input type="text" name="lemail" required class="form-control" id="usrname" placeholder="Enter email">
+            </div>
+         <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-email"></span>Password</label>
+              <input type="password" name="lpwd" required class="form-control" id="psw" placeholder="Enter Password">
+            </div>
+              <input type="submit" onclick="login()" class="btn btn-block" name="log">LOG IN 
+                <span class="glyphicon glyphicon-ok"></span>
+              </button>
+<a class="text-center" data-dismiss="modal" data-toggle="modal" data-target="#reg" >New Customer ? Register</a>
+          </form>    
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- reg modal -->
+  <div class="modal fade" id="reg" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4><span></span>Register</h4>
+        </div>
+        <div class="modal-body">
+      <form role="form" method="post" action="/shop" onsubmit= "return register();">
+            <div class="form-group">
+<h5 id="regerr" ></h5>
+              <label for="usrname1"><span class="glyphicon glyphicon-user"></span>Username/Email</label>
+              <input type="text" name="email" required class="form-control" id="usrname1" placeholder="Enter email">
+            </div>
+         <div class="form-group">
+              <label for="psw1"><span class="glyphicon glyphicon-email"></span>Password</label>
+              <input type="password" name="pwd" required class="form-control" id="psw1" placeholder="Enter Password">
+            </div>
+  <div class="form-group">
+              <label for="cpsw"><span class="glyphicon glyphicon-email"></span>Confirm Password</label>
+              <input type="password" required class="form-control" id="cpsw" placeholder="Re-enter Password">
+            </div>
+              <input type="submit" name="reg" class="btn btn-block" value="REGISTER"><br>
+                <span class="glyphicon glyphicon-ok"></span>
+              </button>
+<a class="text-center" data-dismiss="modal" data-toggle="modal" data-target="#log" >Already Registered ? Login</a>
+          </form>    
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function load()
+{
+var a = document.getElementById('status').innerHTML;
+var s = document.getElementById('lstatus');
+if(a == 'true')
+s.innerHTML = 'Log Out';
+else
+s.innerHTML = 'Log In';
+}
+function viewimg(x)
+{
+var p = x.parentElement;
+var c = p.childNodes;
+document.getElementById("img").src = c[1].src;
+}
+function updcart(x)
+{
+var c = document.getElementById("cartval");
+c.innerHTML = parseInt(c.innerHTML) +1;
+var p = x.parentElement;
+var child = p.childNodes;
+document.getElementById('pname').value = child[3].innerHTML.replace(" ","_");
+document.getElementById('pdesc').value = child[5].innerHTML.replace(" ","_");
+document.getElementById('pprice').value = child[7].innerHTML.replace(" ","_");
+document.getElementById('pimg').value = child[1].src.replace(" ","_");
+document.getElementById('cartcnt').value = c.innerHTML;
+document.getElementById('sub').click();
+} 
+function openn(x)
+{
+var v = x.innerHTML;
+if(v == "Register")
+x.setAttribute("data-target","#reg");
+else if(v == "Log In")
+x.setAttribute("data-target","#log");
+else if(v == "Log Out")
+{
+x.innerHTML = "Log In"; 
+document.getElementById("outsub").click();
+}
+}
+function register()
+{
+var e = document.getElementById("usrname1").value;
+var p1 = document.getElementById("psw1").value;
+var p2 = document.getElementById("cpsw").value;
+var atposition=e.indexOf("@");  
+var dotposition=e.lastIndexOf(".");
+if (atposition<1 || dotposition<atposition+2 || dotposition+2>=e.length)
+{  
+ document.getElementById("regerr").innerHTML = "Please enter a valid email !";
+  return false;  
+  } 
+else
+{
+if(p1 == p2)
+return true;
+else
+{
+document.getElementById("regerr").innerHTML = "Passwords doesn't match !";
+return false;
+}
+}
+}
+</script>
+</body>
+</html>

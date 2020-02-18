@@ -1,0 +1,73 @@
+from pyramid.response import Response
+from pyramid.view import view_config
+from pyramid.renderers import render
+from sqlalchemy.exc import DBAPIError
+from ..models import MyModel
+import transaction
+from ..models import Register
+from sqlalchemy.orm import Query
+from sqlalchemy import and_
+
+@view_config(route_name='index', renderer='../templates/mytemplate.jinja2')
+def my_view(request):
+    try:
+        query = request.dbsession.query(MyModel)
+        one = query.filter(MyModel.name == 'one').first()
+    except DBAPIError:
+        return Response(db_err_msg, content_type='text/plain', status=500)
+    return {'one': one, 'project': 'EcommerceSite'}
+
+@view_config(route_name='home',renderer='../templates/home.jinja2')
+def home(request):
+	return {}
+
+@view_config(route_name='shop',renderer='../templates/shop.jinja2')
+def shop(request):
+	if request.POST.get('reg'):
+		email = request.params['email']
+		pwd = request.params['pwd']
+		q = request.dbsession.query(Register)
+		for i in q:
+			if i.email == email:
+				return Response(render('../templates/shop.jinja2',{'result':'User already exists !'},request = request))
+		p = Register(email,pwd)
+		request.dbsession.add(p)
+		transaction.commit()
+		return Response(render('../templates/shop.jinja2',{'result':'Registration Successfuly !'},request=request))
+	else:
+		print("yov")
+	if request.POST.get('log'):
+		lemail = request.params['lemail']
+		lpwd = request.params['lpwd']
+		q =request.dbsession.query(Register).filter(and_(Register.email == lemail,Register.password == lpwd))
+		if q.count > 0:
+			return Response(render('../templates/shop.jinja2',{'result':'Login Successful !'},request=request))
+		else:
+			return Response(render('../templates/shop.jinja2',{'result':'Invalid Username/Password !'},request=request))
+	return {}
+@view_config(route_name='faq',renderer='../templates/faq.jinja2')
+def faq(request):
+	return {}
+
+@view_config(route_name='contact',renderer='../templates/contact.jinja2')
+def contact(request):
+	return {}
+
+@view_config(route_name='cart',renderer='../templates/cart.jinja2')
+def cart(request):
+	return {}
+db_err_msg = """\
+Pyramid is having a problem using your SQL database.  The problem
+might be caused by one of the following things:
+
+1.  You may need to run the "initialize_EcommerceSite_db" script
+    to initialize your database tables.  Check your virtual
+    environment's "bin" directory for this script and try to run it.
+
+2.  Your database server may not be running.  Check that the
+    database server referred to by the "sqlalchemy.url" setting in
+    your "development.ini" file is running.
+
+After you fix the problem, please restart the Pyramid application to
+try it again.
+"""

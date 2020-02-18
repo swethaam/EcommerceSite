@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="{{request.locale_name}}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="pyramid web application">
+    <meta name="author" content="Pylons Project">
+    <link href="{{request.static_url('ecommercesite:static/contact.css')}}"  rel="stylesheet">
+
+<head>
+  <title>The Ethnics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <body id="shopPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="home">The Ethnics</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+  <ul class="nav navbar-nav navbar-right">
+      <li><a href="cart"><span class="glyphicon glyphicon-shopping-cart"></span><span id="cartval">0{{cartcnt}}</span>  My Cart</a></li>
+    </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="home">HOME</a></li>
+        <li><a href="shop">SHOP</a></li>
+        <li><a href="faq">FAQ</a></li>
+        <li><a href="contact">CONTACT US</a></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+  <h1 class="text-center heading">Contact</h1>
+<!-- Container (Contact Section) -->
+<div id="contact" class="container contact">
+  <p class="text-center"><em>We love our fans!</em></p>
+
+  <div class="row">
+    <div class="col-md-4">
+      <p>Any queries ? Contact us </p>
+      <p><span class="glyphicon glyphicon-map-marker"></span> India</p>
+      <p><span class="glyphicon glyphicon-phone"></span> Phone: +91-456231323 </p>
+      <p><span class="glyphicon glyphicon-envelope"></span> Email: ethinics@gmail.com</p>
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+        </div>
+      </div>
+      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
+      <br>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <button class="collections" type="submit">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

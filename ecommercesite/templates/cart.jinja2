@@ -1,0 +1,139 @@
+<html>
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="{{request.static_url('ecommercesite:static/cart.css')}}"  rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<script src="https://use.fontawesome.com/c560c025cf.js"></script>
+</head>
+  <body id="cartPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<!--<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="home">The Ethnics</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+  <ul class="nav navbar-nav navbar-right">
+      <li><a href="cart"><span class="glyphicon glyphicon-shopping-cart"></span><span id="cartval">0{{cartcnt}}</span> My Cart</a></li>
+    </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="home">HOME</a></li>
+        <li><a href="shop">SHOP</a></li>
+        <li><a href="faq">FAQ</a></li>
+        <li><a href="contact">CONTACT US</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>-->
+<form action="/cart" method="post">
+<input type="hidden" id="delitem" name="delitem">
+<input type="submit" style="visibility:hidden" id="del" name="del">
+</form>
+<div class="container">
+   <div class="card shopping-cart">
+            <div class="card-header bg-dark text-light">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                Shipping cart
+                <a href="/shop" class="btn btn-outline-info btn-sm pull-right">Continue shopping</a>
+                <div class="clearfix"></div>
+            </div>
+            <div class="card-body">
+                    <!-- PRODUCT -->
+			{%for i in result%}
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-2 text-center">
+                                <img class="img-responsive" src="{{i.img.replace('_',' ')}}" alt="prewiew" width="120" height="80">
+                        </div>
+                        <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+                            <h4 class="product-name"><strong>{{i.name.replace("_"," ")}}</strong></h4>
+                            <h4>
+                                <small>{{i.desc.replace("_"," ")}}</small>
+                            </h4>
+                        </div>
+                        <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
+                            <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
+<p id="price1{{i.id}}" style="visibility:hidden">{{i.price.replace("_"," ")}}</p>
+                                <h6 ><strong id="price{{i.id}}">{{i.price.replace("_"," ")}}</strong><span class="text-muted">x</span></h6>
+                            </div>
+<p id="tot" style="visibility:hidden">{{result.count()}}</p>
+                            <div class="col-4 col-sm-4 col-md-4">
+                                <div class="quantity">
+                                    <input type="button" value="+" class="plus">
+                                    <input type="number" step="1" max="99" min="1" value="1" id={{i.id}} title="Qty" class="qty"
+                                           size="4">
+                                    <input type="button" value="-" class="minus">
+                                </div>
+                            </div>
+                            <div class="col-2 col-sm-2 col-md-2 text-right">
+                                <button type="button" class="btn btn-outline-danger btn-xs"  onclick="del(this)" id="del{{i.id}}">
+                                    <span  class="fa fa-trash" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+			{%endfor%}
+                    <hr>
+                    <!-- END PRODUCT -->
+                    <!-- PRODUCT -->
+                    <hr>
+                    <!-- END PRODUCT -->
+                <div class="pull-right">
+                    <button onclick="update()" class="btn btn-outline-secondary pull-right">
+                        Update shopping cart
+                    </button>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="coupon col-md-5 col-sm-5 no-padding-left pull-left">
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="text" class="form-control" placeholder="coupon code">
+                        </div>
+                        <div class="col-6">
+                            <input type="submit" class="btn btn-default" value="Use coupon">
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-right" style="margin: 10px">
+                    <button onclick="checkout()" class="btn btn-success pull-right">Checkout</button>
+                    <div class="pull-right" style="margin: 5px">
+                        Total price: <span id="totprice"><b></b></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<script>
+function del(x)
+{
+document.getElementById("delitem").value = x.id[3];
+document.getElementById("del").click();
+}
+function update()
+{
+var tot= document.getElementById("tot").innerHTML;
+alert(tot);
+var sum = 0;
+for(var j=1;j<=tot;j++)
+{
+document.getElementById("price"+j).innerHTML = document.getElementById("price"+j).innerHTML.replace("$","").replace(",","");
+document.getElementById("price"+j).innerHTML = parseInt(document.getElementById("price1"+j).innerHTML.replace("$","").replace(",","")) *
+parseInt(document.getElementById(j).value);
+sum += parseInt(document.getElementById("price"+j).innerHTML.replace("$","").replace(",",""));
+}
+ document.getElementById("totprice").innerHTML = sum;
+}
+function checkout()
+{
+alert("Payment Gateway!");
+}
+</script>
+</body>
+</html>
+
