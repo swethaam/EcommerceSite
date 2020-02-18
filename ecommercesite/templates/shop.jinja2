@@ -75,7 +75,7 @@
           <p>Diamond Sandals</p>
 	 <p>A platinum ring</p>
           <p>$45,000</p>
-          <button class="btn"   onclick="viewimg(this)">View Product</button>
+          <button class="btn" data-toggle="modal" data-target="#view" onclick="viewimg(this)">View Product</button>
     <button class="btn" data-toggle="modal" onclick="updcart(this)" data-target="#cart">Add to Cart</button>
         </div>
       </div>
@@ -213,7 +213,7 @@
               <label for="psw"><span class="glyphicon glyphicon-email"></span>Password</label>
               <input type="password" name="lpwd" required class="form-control" id="psw" placeholder="Enter Password">
             </div>
-              <input type="submit" onclick="login()" class="btn btn-block" name="log">LOG IN 
+              <input type="submit" onclick="login()" value="Login" class="btn btn-block" name="log">LOG IN 
                 <span class="glyphicon glyphicon-ok"></span>
               </button>
 <a class="text-center" data-dismiss="modal" data-toggle="modal" data-target="#reg" >New Customer ? Register</a>
